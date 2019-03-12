@@ -12,6 +12,8 @@ import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
 import com.example.Bookstore.domain.Category;
 import com.example.Bookstore.domain.CategoryRepository;
+import com.example.Bookstore.domain.User;
+import com.example.Bookstore.domain.UserRepository;
 
 
 @SpringBootApplication
@@ -23,7 +25,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner booktest(BookRepository brepository, CategoryRepository crepository) {
+	public CommandLineRunner booktest(BookRepository brepository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			
 			 L.info("save some categories");
@@ -36,6 +38,11 @@ public class BookstoreApplication {
 
 			//  brepository.save(new Book("Ilkka Remes", "Mysrkyn silmässä", 1234666, 2004, 24.90, crepository.findByName("Romaani").get(0)));
 			
+				User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@gmail.com", "USER");
+				User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@gmail.com", "ADMIN");
+				urepository.save(user1);
+				urepository.save(user2);
+				
 			L.info("fetch books");
 			for(Book book : brepository.findAll()) {
 				L.info(book.toString());

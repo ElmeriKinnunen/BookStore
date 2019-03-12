@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Security login</title>
+<style>
+body{
+	background-image:url("http://papers.co/wallpaper/papers.co-si28-aurora-blur-rainbow-color-gradation-blur-36-3840x2400-4k-wallpaper.jpg");
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: inherit;
+	
+
+}
+
+.loginWindow{
+	background-color: white;
+	width: 380px;
+	height: 400px;
+	padding-bottom: 4%;
+	padding-top: 3%;
+	margin: auto;
+	margin-top: 15%;
+	
+}
+
+.row{
+	justify-content: center;
+}
+
+.row h3{
+	text-align: center;
+	padding-bottom: 20%;
+}
+
+col-md-6{
+	text-align: center;
+	justify-content: center;
+}
+
+.btn {
+  background: #f0ad4e none repeat scroll 0 0;
+  border-color: #f0ad4e;
+  color: #ffffff;
+  font-size: 14px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+
+.Register a{
+	color: dark-blue;
+}
+.Register a:hover{
+	color: #f0ad4e;
+	text-decoration: none;
+}
+
+
+</style>
+
+</head>
+<body>
+	<div class="loginWindow">
+		<div class="row">
+        	<div class="col-md-6 col-md-offset-3">
+            <h3>Login page</h3>
+			<div th:if="${param.error}">
+				Invalid username or password.
+			</div>
+			<div th:if="${param.logout}">
+				You have been logged out.
+			</div>
+	
+		<form th:action="@{/login}" method="post">
+			<div class="form-group">
+					<input type="text" id="username"
+	                	name="username"
+	                	class="form-control"
+	            		autofocus="autofocus"
+	                    placeholder="Username">
+	        </div>
+	        <div class="form-group">
+                	<input type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Password">
+            </div>
+ 			<button type="submit" class="btn btn-primary">Login</button>
+	        <div class="Register">
+	        	Dont have an account? <a th:href="@{/signup}">Sign up</a>
+	        </div>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
