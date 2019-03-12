@@ -26,7 +26,10 @@
 				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
 			</div>
 			
-			<input type="submit" class="btn btn-success" value="Signup"></input>		
+			<button type="submit" class="btn btn-primary">Sign up</button>	
+			<div class="cancel">
+	        	<a th:href="@{/login}">Cancel</a>
+	        </div>	
 		</form>
 	</div>
 </body>

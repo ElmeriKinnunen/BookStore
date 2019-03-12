@@ -26,14 +26,6 @@ public class UserController {
         return "signup";
     }	
     
-    /**
-     * Create new user
-     * Check if user already exists & form validation
-     * 
-     * @param signupForm
-     * @param bindingResult
-     * @return
-     */
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	if (!bindingResult.hasErrors()) { // validation errors
@@ -45,7 +37,7 @@ public class UserController {
 		    	User newUser = new User();
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
-		    	newUser.setEmail(signupForm.getEmail());
+		    	// newUser.setEmail(signupForm.getEmail());
 		    	newUser.setRole("USER");
 		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 		    		repository.save(newUser);

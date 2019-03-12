@@ -1,11 +1,6 @@
 package com.example.Bookstore.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -14,7 +9,6 @@ public class User {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    // Username with unique constraint
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
