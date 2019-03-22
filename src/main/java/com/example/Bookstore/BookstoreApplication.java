@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import com.example.Bookstore.domain.Book;
@@ -16,10 +18,16 @@ import com.example.Bookstore.domain.User;
 import com.example.Bookstore.domain.UserRepository;
 
 @SpringBootApplication
-public class BookstoreApplication {
+public class BookstoreApplication extends SpringBootServletInitializer{
 	private static final Logger L = LoggerFactory.getLogger(BookstoreApplication.class);
 
-	public static void main(String[] args) {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder
+	application) {
+	return application.sources(BookstoreApplication.class);
+	}
+	
+	public static void main(String[] args)throws Exception {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 	
@@ -35,7 +43,7 @@ public class BookstoreApplication {
 			  crepository.save(new Category("Novelli"));
 			  crepository.save(new Category("Sarjakuva"));
 
-			//  brepository.save(new Book("Ilkka Remes", "Mysrkyn silmässä", 1234666, 2004, 24.90, crepository.findByName("Romaani").get(0)));
+			  brepository.save(new Book("Ilkka Remes", "Mysrkyn silmässä", 1234666, 2004, 24.90, crepository.findByName("Romaani").get(0)));
 			
 				User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@gmail.com", "USER");
 				User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@gmail.com", "ADMIN");
